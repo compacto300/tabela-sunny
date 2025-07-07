@@ -4,8 +4,9 @@
 const pages = [
     { title: "Semana 1", url: "index.html" },
     { title: "Semana 2", url: "semana2.html" },
-    { title: "Semana 3", url: "semana3.html" }
-    // Exemplo para o futuro: { title: "Semana 4", url: "semana4.html" }
+    { title: "Semana 3", url: "semana3.html" },
+    { title: "Semana 4", url: "semana4.html" }
+    // Exemplo para o futuro: { title: "Semana 5", url: "semana5.html" }
 ];
 
 // Esta função vai construir o menu de navegação
