@@ -23,7 +23,8 @@ const allDrops = [
     { week: 1, date: "2025-07-06", period: "21:30", member: "Balena", item: "Baú de Arcanjo", guild: "SHOWTIME", rarity: "grey", event: "Castle Siege" },
     { week: 1, date: "2025-07-06", period: "21:30", member: "LF", item: "Chama de Condor", guild: "SHOWTIME", rarity: "red", event: "Castle Siege" },
     
-    // Adicione os drops da Semana 2 aqui no futuro...
+    // Semana 2
+    { week: 2, date: "2025-07-07", period: "13:00", member: "GeoFxx", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
 ];
 
 const itemDetails = {
