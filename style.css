@@ -70,11 +70,10 @@ body {
     padding: 20px;
 }
 
-/* NOVO: Layout de três colunas */
+/* Layout de três colunas */
 .page-layout {
     display: grid;
     grid-template-columns: 320px 1fr 320px; /* Coluna esquerda, coluna central flexível, coluna direita */
-    align-items: flex-start;
     gap: 20px;
     max-width: 1800px;
     margin: 0 auto;
