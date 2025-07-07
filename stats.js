@@ -84,6 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }).join('');
 
+    // --- 4. Estatística Estática (Vitórias Consecutivas) ---
+    const chamberWinsHTML = `
+        <div class="stat-card">
+            <h3>Vitórias Consecutivas Chamber</h3>
+            <img src="https://i.imgur.com/tQOXfU0.png" alt="Ícone de Chamber" style="height: 60px; margin: 10px auto;">
+            <p class="stat-name" style="font-size: 1.5rem;">7 Vitórias</p>
+            <p class="stat-count">Sequência Atual</p>
+        </div>
+    `;
 
     // --- Monta o HTML final e insere na página ---
     const statsHTML = `
@@ -102,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h3>Destaque (Itens Vermelhos)</h3>
                     <div class="guild-spotlight-container">${guildHighlightHTML}</div>
                 </div>
+                ${chamberWinsHTML}
             </div>
         </div>
     `;
