@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="stat-card">
             <h3>Vitórias Consecutivas Chamber</h3>
             <img src="https://i.imgur.com/tQOXfU0.png" alt="Ícone de Chamber" style="height: 60px; margin: 10px auto;">
-            <p class="stat-name" style="font-size: 1.5rem;">7 Vitórias</p>
+            <p class="stat-name" style="font-size: 1.5rem;">9 Vitórias</p>
             <p class="stat-count">Sequência Atual</p>
         </div>
     `;
