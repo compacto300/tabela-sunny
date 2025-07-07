@@ -30,7 +30,7 @@ function createNavigation() {
     // Insere o menu completo na página
     navContainer.innerHTML = `
         <div class="nav-section">
-            <h2 class="nav-title text-2xl">Navegar entre Semanas</h2>
+            <h2 class="nav-title text-2xl">Semanas</h2>
             <div class="nav-links">
                 ${navLinksHTML}
             </div>

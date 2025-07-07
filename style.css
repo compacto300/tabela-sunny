@@ -70,19 +70,25 @@ body {
     padding: 20px;
 }
 
-/* Layout de duas colunas */
+/* NOVO: Layout de três colunas */
 .page-layout {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 320px 1fr 320px; /* Coluna esquerda, coluna central flexível, coluna direita */
     align-items: flex-start;
     gap: 20px;
+    max-width: 1800px;
+    margin: 0 auto;
 }
 .stats-column {
-    width: 320px;
-    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+}
+.nav-column {
+    position: sticky;
+    top: 20px;
 }
 .main-content {
-    flex-grow: 1;
+    min-width: 0; /* Previne que a tabela cause overflow */
 }
 
 .table-container {
@@ -90,7 +96,7 @@ body {
     background-color: #334155;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
+    overflow-x: auto; /* Permite rolagem horizontal na tabela se necessário */
     border: 1px solid #475569;
 }
 table {
@@ -146,7 +152,6 @@ tbody tr:hover {
 /* SEÇÃO DE ESTATÍSTICAS E NAVEGAÇÃO */
 .stats-section, .nav-section {
     width: 100%;
-    margin-top: 20px;
 }
 .stats-title, .nav-title {
     font-family: 'MedievalSharp', cursive;
@@ -250,15 +255,19 @@ tbody tr:hover {
     width: auto !important;
     margin: 0 0 0 8px !important;
 }
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 .nav-links a {
     background-color: #4f46e5;
     color: white;
     padding: 10px 20px;
-    margin: 5px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    display: inline-block;
+    display: block;
     transition: background-color 0.3s;
 }
 .nav-links a:hover {
@@ -272,13 +281,13 @@ tbody tr:hover {
 /* Layout responsivo para telas menores */
 @media (max-width: 1200px) {
     .page-layout {
-        flex-direction: column;
+        grid-template-columns: 1fr; /* Coluna única */
     }
-    .stats-column {
+    .stats-column, .nav-column {
+        position: static; /* Remove o 'sticky' em telas pequenas */
         width: 100%;
-        order: 2; /* Coloca as estatísticas depois da tabela */
     }
-    .main-content {
-        order: 1;
-    }
+    .main-content { order: 1; }
+    .stats-column { order: 2; }
+    .nav-column { order: 3; }
 }
