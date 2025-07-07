@@ -6,23 +6,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const tableBody = document.getElementById('drops-table-body');
     if (!tableBody) return;
 
-    const firstWeekStartDate = new Date('2025-07-02T00:00:00-03:00'); // Quarta-feira
-    const weekStartDate = new Date(firstWeekStartDate);
+    // Define o início da contagem como a primeira segunda-feira do período.
+    const firstMonday = new Date('2025-06-30T00:00:00-03:00'); 
+    const weekStartDate = new Date(firstMonday);
     weekStartDate.setDate(weekStartDate.getDate() + (currentWeek - 1) * 7);
     
     const daysOfWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
     const guildRotation = ["SHOWTIME", "SUNNY"];
     
-    // Encontra a última guilda de um dia que não seja domingo na semana anterior para continuar a rotação
-    let lastNormalGuild = allDrops.filter(d => d.week < currentWeek && new Date(d.date + 'T00:00:00-03:00').getDay() !== 0).pop()?.guild || "SUNNY";
-    let currentGuildIndex = guildRotation.indexOf(lastNormalGuild) === 0 ? 1 : 0;
+    // Calcula o número total de dias de rotação (não-domingos) antes desta semana.
+    let rotationDaysBefore = 0;
+    for (let i = 1; i < currentWeek; i++) {
+        rotationDaysBefore += 6; // 6 dias de rotação por semana.
+    }
+    
+    // O índice inicial depende da paridade dos dias de rotação anteriores.
+    let currentGuildIndex = (rotationDaysBefore % 2);
 
     for (let i = 0; i < 7; i++) {
         const day = new Date(weekStartDate);
         day.setDate(day.getDate() + i);
         
         const dayOfWeek = day.getDay();
-        const fullDateString = `${daysOfWeek[dayOfWeek]}, ${day.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
+        const dateString = `${daysOfWeek[dayOfWeek]}, ${day.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })}`;
         const dateISO = day.toISOString().split('T')[0];
 
         let dayClass = '';
@@ -30,19 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (dayOfWeek === 0) { // Domingo
             dayClass = 'leitas-day';
-            dayGuild = 'SUNNY'; // Dia do Leitas é sempre da guilda Sunny para o drop dele
+            dayGuild = 'SUNNY'; // Regra especial para o Leitas.
         } else {
             dayGuild = guildRotation[currentGuildIndex];
             dayClass = dayGuild.toLowerCase();
-            currentGuildIndex = 1 - currentGuildIndex; // Alterna para a próxima guilda
+            currentGuildIndex = 1 - currentGuildIndex; // Alterna para o próximo dia de rotação.
         }
 
-        // Adiciona as linhas de Dia e Noite
-        tableBody.innerHTML += generateDayRows(fullDateString, dateISO, dayClass, dayGuild, currentWeek);
+        tableBody.innerHTML += generateDayRows(dateString, dateISO, dayClass, dayGuild, currentWeek);
     }
     
     populateTableWithData(currentWeek);
-    populateEventData(currentWeek); // Adiciona os drops de eventos especiais
+    populateEventData(currentWeek);
 });
 
 function generateDayRows(dateDisplay, dateISO, dayClass, dayGuild, week) {
