@@ -82,14 +82,24 @@
             background-color: #1e293b;
             padding: 20px;
         }
-        .main-container {
+
+        /* Layout de duas colunas */
+        .page-layout {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 20px;
         }
+        .stats-column {
+            width: 320px;
+            flex-shrink: 0;
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+
         .table-container {
             width: 100%;
-            max-width: 1000px;
             background-color: #334155;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -146,23 +156,112 @@
             text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
         }
 
-        /* SEÇÃO DE NAVEGAÇÃO */
-        .nav-section {
+        /* SEÇÃO DE ESTATÍSTICAS E NAVEGAÇÃO */
+        .stats-section, .nav-section {
             width: 100%;
-            max-width: 1000px;
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #334155;
-            border-radius: 12px;
-            border: 1px solid #475569;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            text-align: center;
+            margin-top: 20px;
         }
-        .nav-title {
+        .stats-title, .nav-title {
             font-family: 'MedievalSharp', cursive;
             color: #f1f5f9;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
             margin-bottom: 15px;
+            text-align: center;
+        }
+        .stats-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .stat-card {
+            background-color: #334155;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #475569;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .stat-card h3 {
+            color: #94a3b8;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            margin-bottom: 15px;
+        }
+        .stat-card img, .stat-card svg {
+            height: 60px;
+            margin: 0 auto 10px;
+        }
+        .stat-card .stat-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #f1f5f9;
+        }
+        .stat-card .stat-count {
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+        .stat-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .stat-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #475569;
+        }
+        .stat-list-item:last-child {
+            border-bottom: none;
+        }
+        .stat-list-item .item-info {
+            display: flex;
+            align-items: center;
+        }
+        .stat-list-item img {
+            height: 30px;
+            width: 30px;
+            margin-right: 10px;
+        }
+        .stat-list-item .item-name {
+            font-size: 1rem;
+            color: #f1f5f9;
+        }
+        .stat-list-item .item-percentage {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #f1f5f9;
+        }
+        .guild-spotlight-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+        .guild-spotlight-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .guild-spotlight-item .item-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .guild-spotlight-item .item-info img {
+            height: 25px;
+            width: 25px;
+            margin-bottom: 5px;
+        }
+        .guild-spotlight-item .item-info span {
+            font-size: 0.9rem;
+        }
+        .guild-logo-stat {
+            height: 20px !important;
+            width: auto !important;
+            margin: 0 0 0 8px !important;
         }
         .nav-links a {
             background-color: #4f46e5;
@@ -182,287 +281,309 @@
             background-color: #9ca3af;
             cursor: default;
         }
+
+        /* Layout responsivo para telas menores */
+        @media (max-width: 1200px) {
+            .page-layout {
+                flex-direction: column;
+            }
+            .stats-column {
+                width: 100%;
+                order: 2; /* Coloca as estatísticas depois da tabela */
+            }
+            .main-content {
+                order: 1;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <div class="flex items-center mb-6">
-            <h1 class="game-title text-5xl">Semana 3 de Julho - Drops</h1>
+    <div class="page-layout">
+        <div class="stats-column">
+            <!-- Seção de Estatísticas (será preenchida pelo JavaScript) -->
+            <div id="stats-placeholder"></div>
         </div>
-        
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Período</th>
-                        <th>Item</th>
-                        <th>Membro</th>
-                        <th>Guild</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="showtime">
-                        <td>Segunda-feira, 14/07/2025</td>
-                        <td>
-                            <div>13:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Dia</span>
-                                <span class="ml-2">☀️</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="showtime-guild-name">SHOWTIME</span>
-                                <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="showtime">
-                        <td>Segunda-feira, 14/07/2025</td>
-                        <td>
-                            <div>21:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Noite</span>
-                                <span class="ml-2">🌙</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="showtime-guild-name">SHOWTIME</span>
-                                <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="sunny">
-                        <td>Terça-feira, 15/07/2025</td>
-                        <td>
-                            <div>13:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Dia</span>
-                                <span class="ml-2">☀️</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="sunny-guild-name">SUNNY</span>
-                                <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="sunny">
-                        <td>Terça-feira, 15/07/2025</td>
-                        <td>
-                            <div>21:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Noite</span>
-                                <span class="ml-2">🌙</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="sunny-guild-name">SUNNY</span>
-                                <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="showtime">
-                        <td>Quarta-feira, 16/07/2025</td>
-                        <td>
-                            <div>13:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Dia</span>
-                                <span class="ml-2">☀️</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="showtime-guild-name">SHOWTIME</span>
-                                <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="showtime">
-                        <td>Quarta-feira, 16/07/2025</td>
-                        <td>
-                            <div>21:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Noite</span>
-                                <span class="ml-2">🌙</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="showtime-guild-name">SHOWTIME</span>
-                                <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="sunny">
-                        <td>Quinta-feira, 17/07/2025</td>
-                        <td>
-                            <div>13:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Dia</span>
-                                <span class="ml-2">☀️</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="sunny-guild-name">SUNNY</span>
-                                <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="sunny">
-                        <td>Quinta-feira, 17/07/2025</td>
-                        <td>
-                            <div>21:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Noite</span>
-                                <span class="ml-2">🌙</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="sunny-guild-name">SUNNY</span>
-                                <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="showtime">
-                        <td>Sexta-feira, 18/07/2025</td>
-                        <td>
-                            <div>13:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Dia</span>
-                                <span class="ml-2">☀️</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="showtime-guild-name">SHOWTIME</span>
-                                <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="showtime">
-                        <td>Sexta-feira, 18/07/2025</td>
-                        <td>
-                            <div>21:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Noite</span>
-                                <span class="ml-2">🌙</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="showtime-guild-name">SHOWTIME</span>
-                                <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="sunny">
-                        <td>Sábado, 19/07/2025</td>
-                        <td>
-                            <div>13:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Dia</span>
-                                <span class="ml-2">☀️</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="sunny-guild-name">SUNNY</span>
-                                <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="sunny">
-                        <td>Sábado, 19/07/2025</td>
-                        <td>
-                            <div>21:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Noite</span>
-                                <span class="ml-2">🌙</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="sunny-guild-name">SUNNY</span>
-                                <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="showtime">
-                        <td>Domingo, 20/07/2025</td>
-                        <td>
-                            <div>13:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Dia</span>
-                                <span class="ml-2">☀️</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="showtime-guild-name">SHOWTIME</span>
-                                <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="showtime">
-                        <td>Domingo, 20/07/2025</td>
-                        <td>
-                            <div>21:00</div>
-                            <div class="flex items-center justify-center mt-1">
-                                <span>Noite</span>
-                                <span class="ml-2">🌙</span>
-                            </div>
-                        </td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>
-                            <div class="guild-cell-content">
-                                <span class="showtime-guild-name">SHOWTIME</span>
-                                <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
-                            </div>
-                        </td>
-                    </tr>
+
+        <div class="main-content">
+            <div class="flex items-center justify-center mb-6">
+                <h1 class="game-title text-5xl">Semana 3 de Julho - Drops</h1>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Período</th>
+                            <th>Item</th>
+                            <th>Membro</th>
+                            <th>Guild</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="showtime">
+                            <td>Segunda-feira, 14/07/2025</td>
+                            <td>
+                                <div>13:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Dia</span>
+                                    <span class="ml-2">☀️</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="showtime-guild-name">SHOWTIME</span>
+                                    <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="showtime">
+                            <td>Segunda-feira, 14/07/2025</td>
+                            <td>
+                                <div>21:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Noite</span>
+                                    <span class="ml-2">🌙</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="showtime-guild-name">SHOWTIME</span>
+                                    <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="sunny">
+                            <td>Terça-feira, 15/07/2025</td>
+                            <td>
+                                <div>13:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Dia</span>
+                                    <span class="ml-2">☀️</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="sunny-guild-name">SUNNY</span>
+                                    <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="sunny">
+                            <td>Terça-feira, 15/07/2025</td>
+                            <td>
+                                <div>21:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Noite</span>
+                                    <span class="ml-2">🌙</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="sunny-guild-name">SUNNY</span>
+                                    <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="showtime">
+                            <td>Quarta-feira, 16/07/2025</td>
+                            <td>
+                                <div>13:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Dia</span>
+                                    <span class="ml-2">☀️</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="showtime-guild-name">SHOWTIME</span>
+                                    <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="showtime">
+                            <td>Quarta-feira, 16/07/2025</td>
+                            <td>
+                                <div>21:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Noite</span>
+                                    <span class="ml-2">🌙</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="showtime-guild-name">SHOWTIME</span>
+                                    <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="sunny">
+                            <td>Quinta-feira, 17/07/2025</td>
+                            <td>
+                                <div>13:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Dia</span>
+                                    <span class="ml-2">☀️</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="sunny-guild-name">SUNNY</span>
+                                    <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="sunny">
+                            <td>Quinta-feira, 17/07/2025</td>
+                            <td>
+                                <div>21:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Noite</span>
+                                    <span class="ml-2">🌙</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="sunny-guild-name">SUNNY</span>
+                                    <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="showtime">
+                            <td>Sexta-feira, 18/07/2025</td>
+                            <td>
+                                <div>13:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Dia</span>
+                                    <span class="ml-2">☀️</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="showtime-guild-name">SHOWTIME</span>
+                                    <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="showtime">
+                            <td>Sexta-feira, 18/07/2025</td>
+                            <td>
+                                <div>21:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Noite</span>
+                                    <span class="ml-2">🌙</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="showtime-guild-name">SHOWTIME</span>
+                                    <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="sunny">
+                            <td>Sábado, 19/07/2025</td>
+                            <td>
+                                <div>13:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Dia</span>
+                                    <span class="ml-2">☀️</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="sunny-guild-name">SUNNY</span>
+                                    <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="sunny">
+                            <td>Sábado, 19/07/2025</td>
+                            <td>
+                                <div>21:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Noite</span>
+                                    <span class="ml-2">🌙</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="sunny-guild-name">SUNNY</span>
+                                    <img src="https://i.imgur.com/htONejf.png" class="guild-logo" alt="Ícone da Guilda Sunny">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="showtime">
+                            <td>Domingo, 20/07/2025</td>
+                            <td>
+                                <div>13:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Dia</span>
+                                    <span class="ml-2">☀️</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="showtime-guild-name">SHOWTIME</span>
+                                    <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="showtime">
+                            <td>Domingo, 20/07/2025</td>
+                            <td>
+                                <div>21:00</div>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span>Noite</span>
+                                    <span class="ml-2">🌙</span>
+                                </div>
+                            </td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>
+                                <div class="guild-cell-content">
+                                    <span class="showtime-guild-name">SHOWTIME</span>
+                                    <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
+                                </div>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
         </div>
-
+        
         <!-- O menu será inserido aqui pelo JavaScript -->
         <div id="nav-placeholder"></div>
     </div>
 
-    <!-- Script de navegação -->
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="stats.js"></script>
     <script src="navigation.js"></script>
 </body>
 </html>
