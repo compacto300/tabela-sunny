@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Itens e Membros - Semana 2</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: MedievalSharp -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos para visualização no navegador */
+        
+        /* Fundo com Gradiente */
+        tr.showtime { background: linear-gradient(135deg, #d4e7ff 0%, #b8d6fb 100%); }
+        tr.sunny { background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%); }
+        tr.leitas-day { background: linear-gradient(135deg, #d8b4fe 0%, #a855f7 100%); }
+        tr.castle-siege { background: linear-gradient(135deg, #fca5a5 0%, #ef4444 100%); }
+        
+        /* Cor do texto para preto nas linhas coloridas para melhor legibilidade */
+        tr.showtime td, tr.sunny td {
+            color: #1e293b; 
+        }
+        /* Cor do texto para branco na linha roxa e vermelha */
+        tr.leitas-day td, tr.castle-siege td {
+            color: #f8fafc;
+        }
+        tr.leitas-day .sunny-guild-name, tr.castle-siege .showtime-guild-name, tr.castle-siege .sunny-guild-name {
+             color: #f8fafc;
+        }
+        tr.leitas-day .crystal-color, tr.leitas-day .pena-color, tr.leitas-day .chama-color,
+        tr.castle-siege .crystal-color, tr.castle-siege .pena-color, tr.castle-siege .chama-color, tr.castle-siege .bau-arcanjo-color {
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .item-icon, .guild-logo { 
+            transition: all 0.3s ease-in-out;
+        }
+        
+        tr:hover .item-icon {
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
+        }
+        tr:hover .guild-logo {
+            filter: drop-shadow(0 0 10px rgba(255, 255, 150, 0.8));
+            transform: scale(1.05);
+        }
+
+        .item-icon { 
+            height: 32px;
+            width: 32px;
+            display: block;
+            margin: 0 auto 5px;
+        }
+        .guild-logo { 
+            height: 40px; 
+            width: auto;  
+            margin-top: 5px;
+        }
+        
+        .guild-cell-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Cores dos nomes dos itens */
+        .crystal-color { color: #D97706; font-weight: bold; }
+        .pena-color { color: #9333EA; font-weight: bold; }
+        .chama-color { color: #DC2626; font-weight: bold; }
+        .bau-arcanjo-color { color: #4b5563; font-weight: bold; }
+
+        /* Cores dos nomes das Guildas */
+        .showtime-guild-name { color: #2563EB; font-weight: bold; }
+        .sunny-guild-name { color: #FBBF24; font-weight: bold; }
+
+        /* Estilos gerais do corpo da página */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1e293b;
+            padding: 20px;
+        }
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .table-container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: #334155;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid #475569;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #475569;
+            white-space: nowrap;
+            vertical-align: middle;
+            color: #e2e8f0;
+        }
+        
+        th:first-child, td:first-child {
+            white-space: normal;
+            width: 150px; 
+        }
+
+        th:nth-child(2), td:nth-child(2) {
+            width: 90px;
+            white-space: normal;
+            text-align: center;
+        }
+
+        th:nth-child(3), td:nth-child(3),
+        th:nth-child(4), td:nth-child(4),
+        th:nth-child(5), td:nth-child(5) {
+            text-align: center;
+        }
+        th {
+            background-color: #1e293b;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            border-bottom: 2px solid #475569;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tbody tr:hover {
+            background-color: #475569;
+        }
+
+        .game-title {
+            font-family: 'MedievalSharp', cursive;
+            color: #f1f5f9;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        /* SEÇÃO DE NAVEGAÇÃO */
+        .nav-section {
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #334155;
+            border-radius: 12px;
+            border: 1px solid #475569;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .nav-title {
+            font-family: 'MedievalSharp', cursive;
+            color: #f1f5f9;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+        }
+        .nav-links a {
+            background-color: #4f46e5;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .nav-links a:hover {
+            background-color: #4338ca;
+        }
+        .nav-links a.active {
+            background-color: #9ca3af;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="flex items-center mb-6">
+            <h1 class="game-title text-5xl">Semana 2 de Julho - Drops</h1>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Período</th>
+                        <th>Item</th>
+                        <th>Membro</th>
+                        <th>Guild</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- As novas entradas da Semana 2 serão adicionadas aqui -->
+                    <tr class="showtime">
+                        <td>Segunda-feira, 07/07/2025</td>
+                        <td>
+                            <div>13:00</div>
+                            <div class="flex items-center justify-center mt-1">
+                                <span>Dia</span>
+                                <span class="ml-2">☀️</span>
+                            </div>
+                        </td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>
+                            <div class="guild-cell-content">
+                                <span class="showtime-guild-name">SHOWTIME</span>
+                                <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
+                            </div>
+                        </td>
+                    </tr>
+                     <tr class="showtime">
+                        <td>Segunda-feira, 07/07/2025</td>
+                        <td>
+                            <div>21:00</div>
+                            <div class="flex items-center justify-center mt-1">
+                                <span>Noite</span>
+                                <span class="ml-2">🌙</span>
+                            </div>
+                        </td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>
+                            <div class="guild-cell-content">
+                                <span class="showtime-guild-name">SHOWTIME</span>
+                                <img src="https://i.imgur.com/0VSezrG.png" class="guild-logo" alt="Ícone da Guilda Showtime">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Seção de Navegação -->
+        <div class="nav-section">
+            <h2 class="nav-title text-2xl">Navegar entre Semanas</h2>
+            <div class="nav-links">
+                <a href="index.html">Semana 1</a>
+                <a href="#" class="active">Semana 2</a>
+                <!-- Adicionar links para semanas futuras aqui -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
