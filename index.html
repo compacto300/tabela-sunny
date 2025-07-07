@@ -80,14 +80,24 @@
             background-color: #1e293b;
             padding: 20px;
         }
-        .main-container {
+
+        /* Layout de duas colunas */
+        .page-layout {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 20px;
         }
+        .stats-column {
+            width: 320px;
+            flex-shrink: 0;
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+
         .table-container {
             width: 100%;
-            max-width: 1000px;
             background-color: #334155;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -147,8 +157,7 @@
         /* SEÇÃO DE ESTATÍSTICAS E NAVEGAÇÃO */
         .stats-section, .nav-section {
             width: 100%;
-            max-width: 1000px;
-            margin-top: 40px;
+            margin-top: 20px;
         }
         .stats-title, .nav-title {
             font-family: 'MedievalSharp', cursive;
@@ -158,10 +167,9 @@
             text-align: center;
         }
         .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 20px;
-            margin-top: 20px;
         }
         .stat-card {
             background-color: #334155;
@@ -271,16 +279,36 @@
             background-color: #9ca3af;
             cursor: default;
         }
+
+        /* Layout responsivo para telas menores */
+        @media (max-width: 1200px) {
+            .page-layout {
+                flex-direction: column;
+            }
+            .stats-column {
+                width: 100%;
+                order: 2; /* Coloca as estatísticas depois da tabela */
+            }
+            .main-content {
+                order: 1;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <div class="flex items-center mb-6">
-            <h1 class="game-title text-5xl">Semana 1 de Julho - Drops</h1>
+    <div class="page-layout">
+        <div class="stats-column">
+            <!-- Seção de Estatísticas (será preenchida pelo JavaScript) -->
+            <div id="stats-placeholder"></div>
         </div>
-        
-        <div class="table-container">
-            <table>
+
+        <div class="main-content">
+            <div class="flex items-center justify-center mb-6">
+                <h1 class="game-title text-5xl">Semana 1 de Julho - Drops</h1>
+            </div>
+            
+            <div class="table-container">
+                <table>
                 <thead>
                     <tr>
                         <th>Data</th>
@@ -687,12 +715,9 @@
                 </tbody>
             </table>
         </div>
-
+        
         <!-- O menu será inserido aqui pelo JavaScript -->
         <div id="nav-placeholder"></div>
-        
-        <!-- Seção de Estatísticas (será preenchida pelo JavaScript) -->
-        <div id="stats-placeholder"></div>
     </div>
 
     <!-- Scripts -->
