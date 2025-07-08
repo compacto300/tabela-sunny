@@ -2,7 +2,7 @@
 // Para adicionar uma nova semana, basta adicionar uma nova linha a esta lista!
 
 const pages = [
-    { title: "Semana 1", url: "index.html" },
+    { title: "Semana 1", url: "semana1.html" },
     { title: "Semana 2", url: "semana2.html" },
     { title: "Semana 3", url: "semana3.html" },
     { title: "Semana 4", url: "semana4.html" }
@@ -21,7 +21,7 @@ function createNavigation() {
     // Cria o HTML para os links do menu
     let navLinksHTML = pages.map(page => {
         // Verifica se o link corresponde à página atual
-        const isActive = (page.url === currentPageUrl) || (currentPageUrl === '' && page.url === 'index.html');
+        const isActive = (page.url === currentPageUrl);
         // Adiciona a classe 'active' ao botão da página atual
         const activeClass = isActive ? 'active' : '';
         return `<a href="${page.url}" class="${activeClass}">${page.title}</a>`;
