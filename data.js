@@ -25,6 +25,8 @@ const allDrops = [
     
     // Semana 2
     { week: 2, date: "2025-07-07", period: "13:00", member: "GeoFxx", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
+    { week: 2, date: "2025-07-08", period: "13:00", member: "Nesgo", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
+    { week: 2, date: "2025-07-08", period: "13:00", member: "Suellen", item: "Chama de Condor", guild: "SUNNY", rarity: "red" },
 ];
 
 const itemDetails = {
