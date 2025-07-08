@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Itens e Membros - Semana 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <!-- Link para o CSS externo -->
+</head>
+<body>
+    <div class="page-layout">
+        <!-- Coluna da Esquerda: Estatísticas -->
+        <div class="stats-column">
+            <div id="stats-placeholder"></div>
+        </div>
+
+        <!-- Coluna Central: Conteúdo Principal -->
+        <div class="main-content">
+            <div class="flex items-center justify-center mb-6">
+                <h1 class="game-title text-5xl">Semana 1 de Julho - Drops</h1>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Período</th>
+                            <th>Item</th>
+                            <th>Membro</th>
+                            <th>Guild</th>
+                        </tr>
+                    </thead>
+                    <tbody id="drops-table-body">
+                        <!-- O conteúdo da tabela será gerado aqui pelo table-generator.js -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Coluna da Direita: Navegação -->
+        <div class="nav-column">
+            <div id="nav-placeholder"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="stats.js"></script>
+    <script src="navigation.js"></script>
+    <script src="table-generator.js"></script>
+</body>
+</html>
