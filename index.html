@@ -3,54 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela de Itens e Membros - Semana 1</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Redirecionando...</title>
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> <!-- Link para o CSS externo -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1e293b;
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="page-layout">
-        <!-- Coluna da Esquerda: Estatísticas -->
-        <div class="stats-column">
-            <div id="stats-placeholder"></div>
-        </div>
+    <p>Carregando a semana atual...</p>
 
-        <!-- Coluna Central: Conteúdo Principal -->
-        <div class="main-content">
-            <div class="flex items-center justify-center mb-6">
-                <h1 class="game-title text-5xl">Semana 1 de Julho - Drops</h1>
-            </div>
-            
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Período</th>
-                            <th>Item</th>
-                            <th>Membro</th>
-                            <th>Guild</th>
-                        </tr>
-                    </thead>
-                    <tbody id="drops-table-body">
-                        <!-- O conteúdo da tabela será gerado aqui pelo table-generator.js -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <script>
+        // Este script calcula a semana atual e redireciona o usuário.
 
-        <!-- Coluna da Direita: Navegação -->
-        <div class="nav-column">
-            <div id="nav-placeholder"></div>
-        </div>
-    </div>
+        // Define a data de início do período (segunda-feira da Semana 1)
+        const firstMonday = new Date('2025-06-30T00:00:00-03:00');
+        const today = new Date();
 
-    <!-- Scripts -->
-    <script src="data.js"></script>
-    <script src="stats.js"></script>
-    <script src="navigation.js"></script>
-    <script src="table-generator.js"></script>
+        // Calcula a diferença em dias entre hoje e a data de início
+        const diffTime = today - firstMonday;
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        
+        // Calcula o número da semana atual (começando em 1)
+        let currentWeek = Math.floor(diffDays / 7) + 1;
+        
+        // Mapeia o número da semana para a URL da página correspondente
+        const pageMap = {
+            1: 'semana1.html',
+            2: 'semana2.html',
+            3: 'semana3.html',
+            4: 'semana4.html'
+            // Adicione mais semanas aqui no futuro, se necessário
+        };
+
+        // Garante que a semana atual esteja dentro do intervalo definido
+        if (currentWeek < 1) {
+            currentWeek = 1;
+        }
+        
+        const lastWeek = Object.keys(pageMap).length;
+        if (currentWeek > lastWeek) {
+            currentWeek = lastWeek;
+        }
+
+        // Obtém a URL de destino relativa
+        const relativeUrl = pageMap[currentWeek] || 'semana1.html';
+
+        // Constrói a URL absoluta para garantir que o redirecionamento funcione em todos os ambientes.
+        const absoluteUrl = new URL(relativeUrl, window.location.href).href;
+
+        // Redireciona o usuário para a página da semana atual
+        // Usa 'replace' para que o usuário não possa "voltar" para a página de redirecionamento
+        window.location.replace(absoluteUrl);
+    </script>
 </body>
 </html>
