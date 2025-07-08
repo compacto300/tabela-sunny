@@ -55,7 +55,7 @@ function generateDayRows(dateDisplay, dateISO, dayClass, dayGuild, week) {
         ? { nameClass: 'showtime-guild-name', name: 'SHOWTIME', logo: 'https://i.imgur.com/0VSezrG.png' }
         : { nameClass: 'sunny-guild-name', name: 'SUNNY', logo: 'https://i.imgur.com/htONejf.png' };
 
-    return `
+    let rowsHTML = `
         <tr class="${dayClass}" data-date="${dateISO}" data-period="13:00" data-week="${week}">
             <td>${dateDisplay}</td>
             <td><div>13:00</div><div class="flex items-center justify-center mt-1"><span>Dia</span><span class="ml-2">☀️</span></div></td>
@@ -63,14 +63,22 @@ function generateDayRows(dateDisplay, dateISO, dayClass, dayGuild, week) {
             <td class="member-cell">...</td>
             <td><div class="guild-cell-content"><span class="${guildInfo.nameClass}">${guildInfo.name}</span><img src="${guildInfo.logo}" class="guild-logo"></div></td>
         </tr>
-        <tr class="${dayClass}" data-date="${dateISO}" data-period="21:00" data-week="${week}">
-            <td>${dateDisplay}</td>
-            <td><div>21:00</div><div class="flex items-center justify-center mt-1"><span>Noite</span><span class="ml-2">🌙</span></div></td>
-            <td class="item-cell">...</td>
-            <td class="member-cell">...</td>
-            <td><div class="guild-cell-content"><span class="${guildInfo.nameClass}">${guildInfo.name}</span><img src="${guildInfo.logo}" class="guild-logo"></div></td>
-        </tr>
     `;
+
+    // Para o dia 07/07, como não houve drop à noite, não vamos gerar a linha.
+    if (dateISO !== "2025-07-07") {
+        rowsHTML += `
+            <tr class="${dayClass}" data-date="${dateISO}" data-period="21:00" data-week="${week}">
+                <td>${dateDisplay}</td>
+                <td><div>21:00</div><div class="flex items-center justify-center mt-1"><span>Noite</span><span class="ml-2">🌙</span></div></td>
+                <td class="item-cell">...</td>
+                <td class="member-cell">...</td>
+                <td><div class="guild-cell-content"><span class="${guildInfo.nameClass}">${guildInfo.name}</span><img src="${guildInfo.logo}" class="guild-logo"></div></td>
+            </tr>
+        `;
+    }
+    
+    return rowsHTML;
 }
 
 function populateTableWithData(currentWeek) {
