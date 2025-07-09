@@ -29,6 +29,7 @@ const allDrops = [
     { week: 2, date: "2025-07-08", period: "13:00", member: "Suellen", item: "Chama de Condor", guild: "SUNNY", rarity: "red" },
     { week: 2, date: "2025-07-08", period: "21:00", member: "Shivu", item: "Pena de Condor", guild: "SUNNY", rarity: "purple" },
     { week: 2, date: "2025-07-08", period: "21:00", member: "Nyx", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
+    { week: 2, date: "2025-07-09", period: "13:00", member: "Balena", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
 ];
 
 const itemDetails = {
