@@ -14,13 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const daysOfWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
     const guildRotation = ["SHOWTIME", "SUNNY"];
     
-    // Calcula o número total de dias de rotação (não-domingos) antes desta semana.
     let rotationDaysBefore = 0;
     for (let i = 1; i < currentWeek; i++) {
-        rotationDaysBefore += 6; // 6 dias de rotação por semana.
+        rotationDaysBefore += 6;
     }
     
-    // O índice inicial depende da paridade dos dias de rotação anteriores.
     let currentGuildIndex = (rotationDaysBefore % 2);
 
     for (let i = 0; i < 7; i++) {
@@ -34,13 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let dayClass = '';
         let dayGuild = '';
 
-        if (dayOfWeek === 0) { // Domingo
+        if (dayOfWeek === 0) {
             dayClass = 'leitas-day';
-            dayGuild = 'SUNNY'; // Regra especial para o Leitas.
+            dayGuild = 'SUNNY';
         } else {
             dayGuild = guildRotation[currentGuildIndex];
             dayClass = dayGuild.toLowerCase();
-            currentGuildIndex = 1 - currentGuildIndex; // Alterna para o próximo dia de rotação.
+            currentGuildIndex = 1 - currentGuildIndex;
         }
 
         tableBody.innerHTML += generateDayRows(dateString, dateISO, dayClass, dayGuild, currentWeek);
@@ -48,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     populateTableWithData(currentWeek);
     populateEventData(currentWeek);
+    handleEmptyDrops(); // Nova função para lidar com drops vazios
 });
 
 function generateDayRows(dateDisplay, dateISO, dayClass, dayGuild, week) {
@@ -65,7 +64,6 @@ function generateDayRows(dateDisplay, dateISO, dayClass, dayGuild, week) {
         </tr>
     `;
 
-    // Para o dia 07/07, como não houve drop à noite, não vamos gerar a linha.
     if (dateISO !== "2025-07-07") {
         rowsHTML += `
             <tr class="${dayClass}" data-date="${dateISO}" data-period="21:00" data-week="${week}">
@@ -137,5 +135,32 @@ function populateEventData(currentWeek) {
             <td><div class="guild-cell-content"><span class="${guildInfo.nameClass}">${guildInfo.name}</span><img src="${guildInfo.logo}" class="guild-logo"></div></td>
         `;
         tableBody.appendChild(newRow);
+    });
+}
+
+// NOVA FUNÇÃO: Preenche os espaços sem drops com a mensagem "Só o Osso"
+function handleEmptyDrops() {
+    const itemCells = document.querySelectorAll('.item-cell');
+    
+    itemCells.forEach(cell => {
+        if (cell.innerHTML.trim() === '...') {
+            const memberCell = cell.nextElementSibling;
+            
+            // Remove a célula de membro, pois não é necessária
+            if (memberCell && memberCell.classList.contains('member-cell')) {
+                memberCell.remove();
+            }
+
+            // Faz a célula do item ocupar o espaço de duas colunas
+            cell.setAttribute('colspan', '2');
+            
+            // Adiciona a imagem e a mensagem
+            cell.innerHTML = `
+                <div class="no-drop-container">
+                    <img src="https://i.imgur.com/yfWKUeA.png" class="item-icon" alt="Só o Osso">
+                    <span class="no-drop-text">Só o Osso</span>
+                </div>
+            `;
+        }
     });
 }
