@@ -29,12 +29,14 @@ const allDrops = [
     { week: 2, date: "2025-07-08", period: "13:00", member: "Suellen", item: "Chama de Condor", guild: "SUNNY", rarity: "red" },
     { week: 2, date: "2025-07-08", period: "21:00", member: "Shivu", item: "Pena de Condor", guild: "SUNNY", rarity: "purple" },
     { week: 2, date: "2025-07-08", period: "21:00", member: "Nyx", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
-    { week: 2, date: "2025-07-09", period: "13:00", member: "Balena", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
+    { week: 2, date: "2025-07-09", period: "13:00", member: "", item: "Só o Osso", guild: "SHOWTIME", rarity: "none" },
+    { week: 2, date: "2025-07-09", period: "21:00", member: "", item: "Só o Osso", guild: "SHOWTIME", rarity: "none" },
 ];
 
 const itemDetails = {
     "Crystal of Chaos": { img: "https://i.imgur.com/8KBqrWc.png", class: "crystal-color" },
     "Pena de Condor": { img: "https://i.imgur.com/USJWfue.png", class: "pena-color" },
     "Chama de Condor": { img: "https://i.imgur.com/HrNP7sU.png", class: "chama-color" },
-    "Baú de Arcanjo": { img: "https://i.imgur.com/eI96EXs.png", class: "bau-arcanjo-color" }
+    "Baú de Arcanjo": { img: "https://i.imgur.com/eI96EXs.png", class: "bau-arcanjo-color" },
+    "Só o Osso": { img: "https://i.imgur.com/yfWKUeA.png", class: "no-drop-text" }
 };
