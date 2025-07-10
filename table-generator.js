@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     populateTableWithData(currentWeek);
     populateEventData(currentWeek);
-    handleEmptyDrops(); // Nova função para lidar com drops vazios
 });
 
 function generateDayRows(dateDisplay, dateISO, dayClass, dayGuild, week) {
@@ -91,22 +90,37 @@ function populateTableWithData(currentWeek) {
             const itemCell = row.querySelector('.item-cell');
             const memberCell = row.querySelector('.member-cell');
 
-            const itemHTML = `
-                <img src="${itemDetails[drop.item]?.img || ''}" class="item-icon" alt="${drop.item}">
-                <span class="${itemDetails[drop.item]?.class || ''}">${drop.item}</span>`;
-            
-            if (itemCell.innerHTML === '...') {
-                itemCell.innerHTML = itemHTML;
-                memberCell.innerHTML = drop.member;
-            } else {
+            if (itemCell.innerHTML !== '...') {
+                // Se a célula já estiver preenchida, clona a linha para o novo item
                 const newRow = row.cloneNode(true);
-                newRow.querySelector('.item-cell').innerHTML = itemHTML;
-                newRow.querySelector('.member-cell').innerHTML = drop.member;
                 row.parentNode.insertBefore(newRow, row.nextSibling);
+                populateRow(newRow, drop);
+            } else {
+                // Se for a primeira entrada para este período, preenche a linha existente
+                populateRow(row, drop);
             }
         });
     });
 }
+
+function populateRow(row, drop) {
+    const itemCell = row.querySelector('.item-cell');
+    const memberCell = row.querySelector('.member-cell');
+
+    if (drop.item === 'Só o Osso') {
+        itemCell.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                <img src="${itemDetails[drop.item]?.img || ''}" class="item-icon" alt="${drop.item}">
+            </div>`;
+        memberCell.innerHTML = `<span class="${itemDetails[drop.item]?.class || ''}">${drop.item}</span>`;
+    } else {
+        itemCell.innerHTML = `
+            <img src="${itemDetails[drop.item]?.img || ''}" class="item-icon" alt="${drop.item}">
+            <span class="${itemDetails[drop.item]?.class || ''}">${drop.item}</span>`;
+        memberCell.innerHTML = drop.member;
+    }
+}
+
 
 function populateEventData(currentWeek) {
     if (typeof allDrops === 'undefined') return;
@@ -135,32 +149,5 @@ function populateEventData(currentWeek) {
             <td><div class="guild-cell-content"><span class="${guildInfo.nameClass}">${guildInfo.name}</span><img src="${guildInfo.logo}" class="guild-logo"></div></td>
         `;
         tableBody.appendChild(newRow);
-    });
-}
-
-// NOVA FUNÇÃO: Preenche os espaços sem drops com a mensagem "Só o Osso"
-function handleEmptyDrops() {
-    const itemCells = document.querySelectorAll('.item-cell');
-    
-    itemCells.forEach(cell => {
-        if (cell.innerHTML.trim() === '...') {
-            const memberCell = cell.nextElementSibling;
-            
-            // Remove a célula de membro, pois não é necessária
-            if (memberCell && memberCell.classList.contains('member-cell')) {
-                memberCell.remove();
-            }
-
-            // Faz a célula do item ocupar o espaço de duas colunas
-            cell.setAttribute('colspan', '2');
-            
-            // Adiciona a imagem e a mensagem
-            cell.innerHTML = `
-                <div class="no-drop-container">
-                    <img src="https://i.imgur.com/yfWKUeA.png" class="item-icon" alt="Só o Osso">
-                    <span class="no-drop-text">Só o Osso</span>
-                </div>
-            `;
-        }
     });
 }
