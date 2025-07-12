@@ -34,6 +34,7 @@ const allDrops = [
     { week: 2, date: "2025-07-10", period: "13:00", member: "Suellen", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
     { week: 2, date: "2025-07-10", period: "21:00", member: "MH", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
     { week: 2, date: "2025-07-11", period: "13:00", member: "LF", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
+    { week: 2, date: "2025-07-11", period: "21:00", member: "GeoFxx", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
 ];
 
 const itemDetails = {
