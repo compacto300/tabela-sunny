@@ -37,6 +37,18 @@ const allDrops = [
     { week: 2, date: "2025-07-11", period: "21:00", member: "GeoFxx", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
     { week: 2, date: "2025-07-12", period: "13:00", member: "Suellen", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
     { week: 2, date: "2025-07-12", period: "21:00", member: "", item: "Só o Osso", guild: "SUNNY", rarity: "none" },
+    { week: 2, date: "2025-07-13", period: "13:00", member: "Leitas", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
+    { week: 2, date: "2025-07-13", period: "21:00", member: "Leitas", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
+    { week: 2, date: "2025-07-13", period: "21:30", member: "Leitas", item: "Chama de Condor", guild: "SUNNY", rarity: "red", event: "Castle Siege" },
+    { week: 2, date: "2025-07-13", period: "21:30", member: "GeoFxx", item: "Chama de Condor", guild: "SUNNY", rarity: "red", event: "Castle Siege" },
+    { week: 2, date: "2025-07-13", period: "21:30", member: "Leitas", item: "Baú de Arcanjo", guild: "SUNNY", rarity: "grey", event: "Castle Siege" },
+    { week: 2, date: "2025-07-13", period: "21:30", member: "Leitas", item: "Chama de Condor", guild: "SUNNY", rarity: "red", event: "Castle Siege" },
+    { week: 2, date: "2025-07-13", period: "21:30", member: "Nyx", item: "Chama de Condor", guild: "SUNNY", rarity: "red", event: "Castle Siege" },
+    { week: 2, date: "2025-07-13", period: "21:30", member: "Balena", item: "Pena de Condor", guild: "SHOWTIME", rarity: "purple", event: "Castle Siege" },
+    { week: 2, date: "2025-07-13", period: "21:30", member: "LF", item: "Pena de Condor", guild: "SHOWTIME", rarity: "purple", event: "Castle Siege" },
+    { week: 2, date: "2025-07-13", period: "21:30", member: "LF", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow", event: "Castle Siege" },
+    { week: 2, date: "2025-07-13", period: "21:30", member: "Leitas", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow", event: "Castle Siege" },
+    { week: 2, date: "2025-07-13", period: "21:30", member: "Suellen", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow", event: "Castle Siege" },
 ];
 
 const itemDetails = {
