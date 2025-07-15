@@ -49,6 +49,10 @@ const allDrops = [
     { week: 2, date: "2025-07-13", period: "21:30", member: "LF", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow", event: "Castle Siege" },
     { week: 2, date: "2025-07-13", period: "21:30", member: "Leitas", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow", event: "Castle Siege" },
     { week: 2, date: "2025-07-13", period: "21:30", member: "Suellen", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow", event: "Castle Siege" },
+
+    // Semana 3
+    { week: 3, date: "2025-07-14", period: "13:00", member: "PaiCalvoO", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
+    { week: 3, date: "2025-07-14", period: "21:00", member: "Djucoo", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
 ];
 
 const itemDetails = {
