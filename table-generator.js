@@ -83,27 +83,28 @@ function populateTableWithData(currentWeek) {
 
     const weekDrops = allDrops.filter(drop => drop.week === currentWeek && !drop.event);
 
-   weekDrops.forEach(drop => {
-    // Pega a primeira linha correspondente ao período do drop
-    const referenceRow = document.querySelector(`tr[data-date="${drop.date}"][data-period="${drop.period}"]`);
+    weekDrops.forEach(drop => {
+        // Pega a primeira linha correspondente ao período do drop
+        const referenceRow = document.querySelector(`tr[data-date="${drop.date}"][data-period="${drop.period}"]`);
 
-    // Se não encontrar nenhuma linha (pouco provável), não faz nada
-    if (!referenceRow) return;
+        // Se não encontrar nenhuma linha (pouco provável), não faz nada
+        if (!referenceRow) return;
 
-    const itemCell = referenceRow.querySelector('.item-cell');
+        const itemCell = referenceRow.querySelector('.item-cell');
 
-    // Verifica se a primeira linha encontrada ainda está vazia
-    if (itemCell.innerHTML.trim() === '...') {
-        // Se estiver vazia, preenche essa mesma linha
-        populateRow(referenceRow, drop);
-    } else {
-        // Se já estiver preenchida, clona a linha de referência,
-        // preenche com os novos dados e insere na tabela.
-        const newRow = referenceRow.cloneNode(true);
-        populateRow(newRow, drop);
-        referenceRow.parentNode.insertBefore(newRow, referenceRow.nextSibling);
-    }
-});
+        // Verifica se a primeira linha encontrada ainda está vazia
+        if (itemCell.innerHTML.trim() === '...') {
+            // Se estiver vazia, preenche essa mesma linha
+            populateRow(referenceRow, drop);
+        } else {
+            // Se já estiver preenchida, clona a linha de referência,
+            // preenche com os novos dados e insere na tabela.
+            const newRow = referenceRow.cloneNode(true);
+            populateRow(newRow, drop);
+            referenceRow.parentNode.insertBefore(newRow, referenceRow.nextSibling);
+        }
+    });
+}
 
 function populateRow(row, drop) {
     const itemCell = row.querySelector('.item-cell');
