@@ -55,6 +55,12 @@ const allDrops = [
     { week: 3, date: "2025-07-14", period: "21:00", member: "Djucoo", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
     { week: 3, date: "2025-07-15", period: "13:00", member: "Nesgo", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
     { week: 3, date: "2025-07-15", period: "21:00", member: "Shivu", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
+    { week: 3, date: "2025-07-16", period: "13:00", member: "Wolf Killer", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
+    { week: 3, date: "2025-07-16", period: "13:00", member: "GeoFxx", item: "Pena de Condor", guild: "SHOWTIME", rarity: "purple" },
+    { week: 3, date: "2025-07-16", period: "13:00", member: "LF", item: "Chama de Condor", guild: "SHOWTIME", rarity: "red" },
+    { week: 3, date: "2025-07-16", period: "21:00", member: "GeoFxx", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
+    { week: 3, date: "2025-07-17", period: "13:00", member: "TsurubaMei", item: "Chama de Condor", guild: "SUNNY", rarity: "red" },
+    { week: 3, date: "2025-07-17", period: "21:00", member: "Nyx", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
 ];
 
 const itemDetails = {
