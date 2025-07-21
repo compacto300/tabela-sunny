@@ -67,6 +67,21 @@ const allDrops = [
     { week: 3, date: "2025-07-19", period: "13:00", member: "Nyx", item: "Pena de Condor", guild: "SUNNY", rarity: "purple" },
     { week: 3, date: "2025-07-19", period: "13:00", member: "Suellen", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
     { week: 3, date: "2025-07-19", period: "21:00", member: "Shivu", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
+    { week: 3, date: "2025-07-20", period: "13:00", member: "Leitas", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
+    { week: 3, date: "2025-07-20", period: "21:00", member: "Leitas", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
+    { week: 3, date: "2025-07-20", period: "21:00", member: "Leitas", item: "Pena de Condor", guild: "SUNNY", rarity: "purple" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "PaiCalvoo", item: "Baú de Arcanjo", guild: "SHOWTIME", rarity: "grey", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "Djucoo", item: "Baú de Arcanjo", guild: "SHOWTIME", rarity: "grey", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "Leitas", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "Leitas", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "LF", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "LF", item: "Pena de Condor", guild: "SHOWTIME", rarity: "purple", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "GeoFxx", item: "Pena de Condor", guild: "SUNNY", rarity: "purple", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "GeoFxx", item: "Pena de Condor", guild: "SUNNY", rarity: "purple", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "Nyx", item: "Pena de Condor", guild: "SUNNY", rarity: "purple", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "Shivu", item: "Pena de Condor", guild: "SUNNY", rarity: "purple", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "Balena", item: "Chama de Condor", guild: "SHOWTIME", rarity: "red", event: "Castle Siege" },
+    { week: 3, date: "2025-07-20", period: "21:30", member: "Suellen", item: "Chama de Condor", guild: "SUNNY", rarity: "red", event: "Castle Siege" },
 ];
 
 const itemDetails = {
