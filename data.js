@@ -82,6 +82,13 @@ const allDrops = [
     { week: 3, date: "2025-07-20", period: "21:30", member: "Shivu", item: "Pena de Condor", guild: "SUNNY", rarity: "purple", event: "Castle Siege" },
     { week: 3, date: "2025-07-20", period: "21:30", member: "Balena", item: "Chama de Condor", guild: "SHOWTIME", rarity: "red", event: "Castle Siege" },
     { week: 3, date: "2025-07-20", period: "21:30", member: "Suellen", item: "Chama de Condor", guild: "SUNNY", rarity: "red", event: "Castle Siege" },
+    
+    // Semana 4
+    { week: 4, date: "2025-07-21", period: "13:00", member: "Lua", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
+    { week: 4, date: "2025-07-21", period: "21:00", member: "Wolf Killer", item: "Crystal of Chaos", guild: "SHOWTIME", rarity: "yellow" },
+    { week: 4, date: "2025-07-22", period: "13:00", member: "Suellen", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
+    { week: 4, date: "2025-07-22", period: "21:00", member: "Nyx", item: "Pena de Condor", guild: "SUNNY", rarity: "purple" },
+    { week: 4, date: "2025-07-22", period: "21:00", member: "Nyx", item: "Crystal of Chaos", guild: "SUNNY", rarity: "yellow" },
 ];
 
 const itemDetails = {
